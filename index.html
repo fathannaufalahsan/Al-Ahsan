@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Klinik AL-AHSAN - Pelayanan Kesehatan Terbaik</title>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Custom CSS -->
+    <style>
+        /* Global Styles */
+:root {
+    --primary-color: #28a745; /* Warna hijau utama */
+    --secondary-color: #218838; /* Warna hijau gelap untuk efek hover */
+    --background-color: #f0f8f0; /* Background hijau muda */
+    --text-color: #333; /* Teks utama */
+    --white-color: #ffffff; /* Putih untuk latar belakang dan teks terang */
+    --dark-mode-bg: #121212; /* Warna latar belakang mode gelap */
+    --dark-mode-text: #f1f1f1; /* Teks terang pada mode gelap */
+    --dark-mode-card-bg: #1e1e1e; /* Background kartu dalam mode gelap */
+}
+
+    body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    body.dark-mode {
+    background-color: var(--dark-mode-bg);
+    color: var(--dark-mode-text);
+    }
+
+    a {
+    text-decoration: none;
+    color: inherit;
+    }
+
+    /* Header */
+    header {
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    padding: 20px 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    }
+
+    header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    }
+
+    /* Navigation */
+    nav {
+    display: flex;
+    justify-content: center;
+    background-color: var(--secondary-color);
+    padding: 10px 0;
+    position: sticky;
+    top: 80px;
+    z-index: 1000;
+    }
+
+    nav a {
+    color: var(--white-color);
+    margin: 0 15px;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    }
+
+    nav a:hover {
+    color: #ffdd57; /* Highlight color saat hover */
+    }
+
+    /* Dark Mode Toggle */
+    .dark-mode-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    padding: 10px 15px;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    transition: background-color 0.3s ease;
+    }
+
+    .dark-mode-toggle:hover {
+    background-color: var(--secondary-color);
+    }
+
+    /* Hero Section */
+    .hero {
+        position: relative;
+        background-image: url('image/BG.jpg');
+        background-size: cover;
+        background-position: center;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        color: var(--white-color);
+        overflow: hidden;
+        transition: transform 1.5s ease-in-out;
+    }
+
+    /* Overlay Gelap */
+    .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.4); /* Overlay lebih transparan untuk efek lebih lembut */
+        z-index: 1;
+    }
+
+    .hero-content {
+        z-index: 2;
+        max-width: 800px;
+        padding: 20px;
+        animation: fadeInUp 1.5s ease-in-out;
+    }
+
+    .hero h2 {
+        font-size: 3.8rem;
+        font-weight: 700;
+        letter-spacing: 1px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+        color: #ffffff;
+        opacity: 0.9;
+    }
+
+    .hero p {
+        font-size: 1.4rem;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: #f1f1f1;
+        opacity: 0.8;
+    }
+
+    .btn-primary {
+        padding: 15px 35px;
+        background-color: var(--primary-color);
+        color: var(--white-color);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.3rem;
+        border-radius: 30px;
+        box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease, transform 0.3s ease;
+        border: 2px solid transparent;
+    }
+
+    .btn-primary:hover {
+        background-color: var(--secondary-color);
+        transform: translateY(-8px);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+    }
+
+    .btn-primary:focus {
+        outline: none;
+        border-color: var(--primary-color);
+    }
+
+    /* Animasi Fade In */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Parallax Effect */
+    .hero {
+        background-attachment: fixed;
+        background-position: center;
+        background-size: cover;
+        transition: background-position 0.5s ease-in-out;
+    }
+
+    /* Responsif untuk Hero Section */
+    @media screen and (max-width: 768px) {
+        .hero h2 {
+            font-size: 2.8rem;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .btn-primary {
+            padding: 12px 28px;
+            font-size: 1.1rem;
+        }
+    }
+
+    /* Services Section */
+    .services {
+        padding: 50px 20px;
+        background-color: var(--white-color);
+        text-align: center;
+    }
+
+    body.dark-mode .services {
+        background-color: var(--dark-mode-bg);
+    }
+
+    .services h2 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+    }
+
+    .service-grid {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+
+    .service-item {
+        background-color: var(--background-color);
+        padding: 20px;
+        border-radius: 10px;
+        width: 250px;
+        box-shadow: 0 6px 18px #4CAF50;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: var(--text-color);
+    }
+
+    body.dark-mode .service-item {
+        background-color: var(--background-color);
+        padding: 20px;
+        border-radius: 10px;
+        width: 250px;
+        box-shadow: 0 6px 18px #ffffff;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: var(--text-color);
+    }
+
+    body.dark-mode .service-item {
+        background-color: var(--dark-mode-card-bg);
+        color: var(--dark-mode-text);
+    }
+
+    .service-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 15px var(--dark-mode-text);
+    }
+
+    body.dark-mode .service-item:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 15px var(--dark-mode-card-bg);
+    }
+
+
+    .service-item i {
+        font-size: 2rem;
+        color: var(--primary-color);
+    }
+
+    .service-item h3 {
+        font-size: 1.5rem;
+        margin: 15px 0 10px;
+    }
+
+    .service-item p {
+        color: #666;
+    }
+
+    body.dark-mode .service-item p {
+        color: var(--dark-mode-text);
+    }
+
+/* Center the title */
+.centered-text {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+}
+body.dark-mode .centered-text {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #ffffff;
+}
+
+/* Simple grid layout for portfolio items */
+.portfolio-wrapper {
+    display: grid;
+    grid-template-columns: repeat(4, 2fr); /* 4 items per row */
+    gap: 50px;
+    padding: 30px;
+    margin: 0 auto;
+    max-width: 1200px; /* Limit the max-width for a more centered look */
+}
+
+/* Style for individual portfolio items */
+.portfolio-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 12px;
+    background-color: #ffffff;
+    padding: 20px;
+    box-shadow: 0 6px 18px #4CAF50; /* Slightly stronger shadow for a more elevated feel */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+body.dark-mode .portfolio-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 12px;
+    background-color: var(--dark-mode-card-bg);
+    padding: 20px;
+    box-shadow: 0 6px 18px #ffffff; /* Slightly stronger shadow for a more elevated feel */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect for portfolio items */
+.portfolio-item:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+    box-shadow: 0 10px 30px #ffffff; /* Deeper shadow on hover */
+}
+
+body.dark-mode .portfolio-item:hover {
+    transform: translateY(-10px); /* Slight lift on hover */
+    box-shadow: 0 10px 30px var(--dark-mode-card-bg); /* Deeper shadow on hover */
+}
+
+/* Image style */
+.portfolio-item img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    object-fit: cover; /* Ensure image covers the space without distortion */
+    margin-bottom: 15px;
+}
+
+/* Heading style */
+.portfolio-item h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+
+body.dark-mode .portfolio-item h3 {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: var(--dark-mode-text);
+    margin-top: 10px;
+    transition: color 0.3s ease;
+}
+/* Description style */
+.portfolio-item p {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+
+/* Description style */
+body.dark-mode .portfolio-item p {
+    font-size: 1.1rem;
+    color: var(--dark-mode-text);
+    margin-bottom: 20px;
+    line-height: 1.5;
+}
+/* Button style */
+.modern-button {
+    padding: 12px 25px;
+    background-color: #4CAF50;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+/* Button hover effect */
+.modern-button:hover {
+    background-color: #45a049;
+    transform: scale(1.05); /* Slightly enlarge the button on hover */
+}
+
+/* Make the portfolio items responsive */
+@media (max-width: 1024px) {
+    .portfolio-wrapper {
+        grid-template-columns: repeat(2, 1fr); /* Two items per row on tablets */
+    }
+}
+
+@media (max-width: 768px) {
+    .portfolio-wrapper {
+        grid-template-columns: 1fr; /* One item per row on smaller screens */
+    }
+}
+
+/* Contact Form */
+.contact {
+    padding: 50px 20px;
+    background-color: var(--white-color);
+    text-align: center;
+}
+
+body.dark-mode .contact {
+    background-color: var(--dark-mode-bg);
+}
+
+.contact h2 {
+    font-size: 2.5rem;
+    margin-bottom: 30px;
+}
+
+.contact form {
+    max-width: 600px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact input, .contact textarea {
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-color);
+    background-color: var(--white-color);
+}
+
+body.dark-mode .contact input, body.dark-mode .contact textarea {
+    background-color: var(--dark-mode-card-bg);
+    color: var(--dark-mode-text);
+    border-color: #444;
+}
+
+.contact button {
+    padding: 10px 20px;
+    background-color: var(--primary-color);
+    color: var(--white-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.contact button:hover {
+    background-color: var(--secondary-color);
+}
+
+/* Map Section */
+.map {
+    padding: 50px 20px;
+    background-color: var(--background-color);
+    text-align: center;
+}
+
+body.dark-mode .map {
+    background-color: var(--dark-mode-bg);
+}
+
+/* Map Section Title - Making it Bigger */
+.map h2 {
+    font-size: 2.5rem; /* Increased font size for 'Lokasi Kami' */
+    margin-bottom: 30px;
+}
+
+/* Map Embed Styling */
+.map iframe {
+    width: 100%;
+    height: 400px;
+    border: 0;
+    border-radius: 10px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--secondary-color);
+    color: var(--dark-mode-text);
+    text-align: center;
+    padding: 20px 0;
+}
+
+</style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <h1>KLINIK AL AHSAN</h1>
+    </header>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="#home">Beranda</a>
+        <a href="#services">Layanan</a>
+        <a href="#carousel">Galeri</a>
+        <a href="#contact">Kontak</a>
+    </nav>
+
+    <!-- Dark Mode Toggle -->
+    <button class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h2 data-aos="fade-up" data-aos-duration="1500">Pelayanan Kesehatan Terbaik untuk Anda</h2>
+            <p data-aos="fade-up" data-aos-delay="300" data-aos-duration="1500">Kami memberikan perawatan dengan teknologi terbaru untuk kesehatan Anda. Nikmati pengalaman medis yang nyaman dan profesional.</p>
+            <a href="#services" class="btn-primary" data-aos="fade-up" data-aos-delay="500" data-aos-duration="1500">Lihat Layanan Kami</a>
+        </div>
+    </section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <h2 data-aos="fade-up">Layanan Kami</h2>
+    <div class="service-grid">
+        <div class="service-item" data-aos="fade-up" data-aos-delay="100">
+            <i class="fas fa-heartbeat"></i>
+            <h3>Konsultasi Dokter</h3>
+            <p>Konsultasi dengan dokter ahli untuk kesehatan Anda.</p>
+        </div>
+        <div class="service-item" data-aos="fade-up" data-aos-delay="200">
+            <i class="fas fa-pills"></i>
+            <h3>Obat dan Resep</h3>
+            <p>Penyediaan obat dan resep sesuai kebutuhan.</p>
+        </div>
+        <div class="service-item" data-aos="fade-up" data-aos-delay="300">
+            <i class="fas fa-ambulance"></i>
+            <h3>Layanan Darurat</h3>
+            <p>Layanan darurat 24 jam untuk pertolongan cepat.</p>
+        </div>
+        <div class="service-item" data-aos="fade-up" data-aos-delay="400">
+            <i class="fas fa-stethoscope"></i>
+            <h3>Pemeriksaan Kesehatan</h3>
+            <p>Pemeriksaan kesehatan rutin untuk mencegah penyakit.</p>
+        </div>
+    </div>
+</section>
+
+<section class="carousel" id="carousel">
+    <h2 data-aos="fade-up" class="centered-text">Galeri Klinik</h2>
+    <div class="portfolio-wrapper">
+        <div class="portfolio-item">
+            <img src="image/konsultasi.jpeg" alt="Proyek 1">
+            <h3>Konsultasi Dokter</h3>
+            <p>Pelayanan konsultasi oleh dokter ahli.</p>
+            <a href="#" class="modern-button">Lihat Detail</a>
+        </div>
+        <div class="portfolio-item">
+            <img src="image/rehabilitasi.jpg" alt="Proyek 2">
+            <h3>Rehabilitasi Medis</h3>
+            <p>Layanan fisioterapi setelah operasi.</p>
+            <a href="#" class="modern-button">Lihat Detail</a>
+        </div>
+        <div class="portfolio-item">
+            <img src="image/rawat.jpg" alt="Proyek 2">
+            <h3>Ruang Perawatan</h3>
+            <p>Ruang perawatan yang nyaman dan modern.</p>
+            <a href="#" class="modern-button">Lihat Detail</a>
+        </div>
+        <div class="portfolio-item">
+            <img src="image/lab.jpg" alt="Proyek 3">
+            <h3>Fasilitas Laboratorium</h3>
+            <p>Laboratorium dengan peralatan canggih.</p>
+            <a href="#" class="modern-button">Lihat Detail</a>
+        </div>
+    </div>
+</section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <h2 data-aos="fade-up">Hubungi Kami</h2>
+        <form action="#" method="post" data-aos="fade-up">
+            <input type="text" name="name" placeholder="Nama Anda" required>
+            <input type="email" name="email" placeholder="Email Anda" required>
+            <textarea name="message" rows="5" placeholder="Pesan Anda" required></textarea>
+            <button type="submit">Kirim Pesan</button>
+        </form>
+    </section>
+
+<!-- Map Section -->
+<section class="map" id="map">
+    <h2 data-aos="fade-up">Lokasi Kami</h2>
+
+    <!-- Deskripsi Lokasi -->
+    <div class="map-description">
+        <p>Temukan kami di Apotek AL AHSAN. Kami menyediakan layanan kesehatan terbaik dengan lokasi yang mudah diakses di pusat kota.</p>
+    </div>
+
+    <!-- Google Maps Embed -->
+    <iframe
+        id="google-map-iframe"
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d18936.20842346233!2d102.31903191141164!3d-3.842907028243653!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e36bb00461f2f4d%3A0xce6775ed6f903ab2!2sAPOTEK%20AL%20AHSAN!5e0!3m2!1sen!2sid!4v1740797255738!5m2!1sen!2sid"
+        width="100%"
+        height="600"
+        style="border: 0; border-radius: 15px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); transition: all 0.5s ease-in-out;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="footer-container">
+        <p>&copy; <span id="year"></span> Klinik AL AHSAN. All Rights Reserved.</p>
+        <p>Hubungi Kami:
+            <a href="mailto:klinikalahsan@gmail.com">klinikalahsan@gmail.com</a> |
+            <a href="tel:+6281277746116">+62 8127 7746 116</a>
+        </p>
+    </div>
+</footer>
+
+<script>
+    // Menampilkan tahun secara otomatis
+    document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Custom JS -->
+<script>
+    // Inisialisasi AOS
+    AOS.init({
+        duration: 1000,
+        once: true,
+    });
+
+    // Dark Mode Toggle
+    function toggleDarkMode() {
+        document.body.classList.toggle('dark-mode');
+        const toggleButton = document.querySelector('.dark-mode-toggle');
+        if (document.body.classList.contains('dark-mode')) {
+            toggleButton.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            toggleButton.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+    }
+</script>
+</body>
+</html>
